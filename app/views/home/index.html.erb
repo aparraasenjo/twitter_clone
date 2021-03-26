@@ -1,4 +1,16 @@
-<h1>Twitter Clone Home</h1>
+<h1 class="text-center">Twitter Clone Home</h1>
+<br>
+<br>
+<% if user_signed_in? %>
+    <h2><%= "Welcome #{current_user.name}!" %></h2>
+    <br>
+    <br>
+    <%= render 'tweets/form', tweet: @tweet %>
+<% else %>
+    <h2><%= "Welcome Visitor, please sign in or sign up!" %></h2>
+<% end %>
+<br>
+<br>
 <table class="table">
     <%= paginate @tweets %>
     <thead>
