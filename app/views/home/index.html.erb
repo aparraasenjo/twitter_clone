@@ -1,5 +1,6 @@
 <h1>Twitter Clone Home</h1>
 <table class="table">
+    <%= paginate @tweets %>
     <thead>
         <tr>
         <th scope="col">Content</th>
@@ -19,3 +20,5 @@
         <% end %>
     </tbody>
 </table>
+
+<h2><%= link_to_next_page @tweets, 'More Tweets' %></h2>

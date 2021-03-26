@@ -31,6 +31,9 @@ gem 'faker'
 # Use ActiveStorage variant
 gem 'mini_magick'
 
+# Pagination gem
+gem 'kaminari'
+
 # User Authentication Via Devise
 gem 'devise'
 
