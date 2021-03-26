@@ -1,1 +1,21 @@
-
+<h1>Twitter Clone Home</h1>
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Content</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Likes</th>
+        <th scope="col">Retweets</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <% @tweets.each do |tweet| %>
+        <td><%= tweet.content %></td>
+        <td><%= link_to "Avatar", tweet.user.avatar %></td>
+        <td><%= tweet.n_likes %></td>
+        <td><%= tweet.retweets %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
