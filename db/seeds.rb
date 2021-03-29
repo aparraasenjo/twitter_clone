@@ -8,6 +8,6 @@
 
 
 200.times do
-    Tweet.create(content: Faker::Lorem.sentence, n_likes: rand(1..100), retweets: rand(1..100), user_id: [1,2,3].sample)
+    Tweet.create(content: Faker::Lorem.sentence, retweets: rand(1..100), user_id: [1,2,3].sample)
 
 end

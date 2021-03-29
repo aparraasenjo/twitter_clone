@@ -26,7 +26,15 @@
         <% @tweets.each do |tweet| %>
         <td><%= tweet.content %></td>
         <td><%= link_to "Avatar", tweet.user.avatar %></td>
-        <td><%= tweet.n_likes %></td>
+        <td><%= tweet.likes.count %>
+        <% if user_signed_in? %>
+            <% liked = tweet.likes.find {|like| like.user_id == current_user.id} %>
+            <% if liked %>
+                <%= button_to 'Unlike', tweet_like_path(tweet, liked), method: :delete %>
+            <% else %>
+                <%= button_to 'Like', tweet_likes_path(tweet), method: :post %>
+            <% end %></td>  
+        <% end %>
         <td><%= tweet.retweets %></td>
         </tr>
         <% end %>
