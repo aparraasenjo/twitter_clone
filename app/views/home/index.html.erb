@@ -18,7 +18,7 @@
         <th scope="col">Content</th>
         <th scope="col">Avatar</th>
         <th scope="col">Likes</th>
-        <th scope="col">Retweets</th>
+        <th scope="col">Retweet</th>
         </tr>
     </thead>
     <tbody>
@@ -35,7 +35,9 @@
                 <%= button_to 'Like', tweet_likes_path(tweet), method: :post %>
             <% end %></td>  
         <% end %>
-        <td><%= tweet.retweets %></td>
+        <td><% if user_signed_in? %>
+        <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %></td>
+        <% end %><td>
         </tr>
         <% end %>
     </tbody>

@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_tweet, only: %i[ show edit update destroy repost ]
 
   # GET /tweets or /tweets.json
   def index
@@ -47,6 +47,13 @@ class TweetsController < ApplicationController
     end
   end
 
+  def repost
+    if @tweet
+      Tweet.create(user_id: current_user.id, content: "Original Tweet: #{@tweet.content}", repost_id: @tweet.id)
+      redirect_to root_path, notice: "Tweet was successfully re-tweeted."
+    end
+  end
+
   # DELETE /tweets/1 or /tweets/1.json
   def destroy
     @tweet.destroy
@@ -59,11 +66,11 @@ class TweetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweet = Tweet.find(params[:tweet_id])
     end
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content, :n_likes, :retweets)
+      params.require(:tweet).permit(:content, :retweets)
     end
 end
