@@ -38,6 +38,7 @@
         <td><% if user_signed_in? %>
         <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %></td>
         <% end %><td>
+        <td><%= link_to "#{tweet.created_at.strftime("%M")}", tweet_path(tweet) %>
         </tr>
         <% end %>
     </tbody>
