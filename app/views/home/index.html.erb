@@ -1,3 +1,13 @@
+<%= search_form_for @q do |f| %>
+    <div class="form-group">
+        <%= f.label :content_cont %>
+        <%= f.search_field :content_cont, class: "form-control", placeholder: "search text" %>
+        <br>
+    </div>
+        <%= f.submit %>
+<% end %>
+
+
 <h1 class="text-center">Twitter Clone Home</h1>
 <br>
 <br>

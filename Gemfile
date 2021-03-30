@@ -37,6 +37,9 @@ gem 'kaminari'
 # admin actions
 gem 'activeadmin'
 
+# for search forms
+gem 'ransack'
+
 # User Authentication Via Devise
 gem 'devise'
 
