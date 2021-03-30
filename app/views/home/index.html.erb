@@ -28,7 +28,7 @@
         <td><%= tweet.user.name %> 
         <% if user_signed_in? %>
         <% if current_user.friends.pluck(:friend_id).include?(tweet.user.id) %>
-        <%= button_to 'UnFollow', tweet_unfriend_path(tweet), method: :delete %></td>
+        <%= button_to 'UnFollow', tweet_unfriend_path(tweet), method: :delete %>
         <% elsif current_user.id == tweet.user.id %>
         <%  %>
         <% else %>
@@ -45,12 +45,12 @@
                 <%= button_to 'Unlike', tweet_like_path(tweet, liked), method: :delete %>
             <% else %>
                 <%= button_to 'Like', tweet_likes_path(tweet), method: :post %>
-            <% end %></td>  
-        <% end %>
+            <% end %> 
+        <% end %></td> 
         <td><% if user_signed_in? %>
-        <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %></td>
+        <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %>
         <% end %><td>
-        <td><%= link_to "#{time_ago_in_words(tweet.created_at)} ago", tweet_path(tweet) %>
+        <td><%= link_to "#{time_ago_in_words(tweet.created_at)} ago", tweet_path(tweet) %></td>
         </tr>
         <% end %>
     </tbody>

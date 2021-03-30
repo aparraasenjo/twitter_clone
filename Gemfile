@@ -34,6 +34,9 @@ gem 'mini_magick'
 # Pagination gem
 gem 'kaminari'
 
+# admin actions
+gem 'activeadmin'
+
 # User Authentication Via Devise
 gem 'devise'
 
