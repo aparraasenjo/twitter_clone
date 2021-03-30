@@ -37,6 +37,7 @@
             <% end %> 
         <% end %></td> 
         <td><% if user_signed_in? %>
+        <br>
         <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %>
         <% end %><td>
         <td><%= link_to "#{time_ago_in_words(tweet.created_at)} ago", tweet_path(tweet) %></td>
