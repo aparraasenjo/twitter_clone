@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
-  before_action :set_rtweet, only: %i[ repost ]
+  before_action :set_rtweet, only: %i[ repost friend unfriend ]
+
 
 
   # GET /tweets or /tweets.json
@@ -38,6 +39,7 @@ class TweetsController < ApplicationController
 
   # PATCH/PUT /tweets/1 or /tweets/1.json
   def update
+    if @tweet.user == current_user
     respond_to do |format|
       if @tweet.update(tweet_params)
         format.html { redirect_to @tweet, notice: "Tweet was successfully updated." }
@@ -47,13 +49,27 @@ class TweetsController < ApplicationController
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
+    else
+      redirect_to root_path, notice: "You did not tweeted this tweet!"
+    end
   end
 
   def repost
     if @tweet
-      Tweet.create(user_id: current_user.id, content: "Original Tweet: #{@tweet.content}", repost_id: @tweet.id)
+      Tweet.create(user_id: current_user.id, content: "Original Tweet by #{@tweet.user.name}: #{@tweet.content}", repost_id: @tweet.id)
       redirect_to root_path, notice: "Tweet was successfully re-tweeted."
     end
+  end
+
+  def friend
+      Friend.create(user_id: current_user.id, friend_id: @tweet.user_id)
+      redirect_to root_path, notice: "You are now following #{@tweet.user}'s tweets"
+  end
+
+  def unfriend
+    @friend = Friend.find_by(friend_id: @tweet.user.id)
+    @friend.destroy
+    redirect_to root_path, notice: "You ceased to follow #{@tweet.user}'s tweets"
   end
 
   # DELETE /tweets/1 or /tweets/1.json
@@ -76,6 +92,6 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content, :retweets)
+      params.require(:tweet).permit(:content)
     end
 end

@@ -21,5 +21,10 @@
   <%= @tweet.user %>
 </p>
 
-<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-<%= link_to 'Back', root_path %>
+<% if @tweet.user == current_user %>
+  <%= link_to 'Edit', edit_tweet_path(@tweet) %> |
+  <%= link_to 'Back', root_path %>
+<% else %>
+  <%= link_to 'Back', root_path %>
+<% end %>
+
