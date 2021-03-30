@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'home#index'
   get 'home/friends'
+  get '/home/hashtag/:name', to: 'home#hashtags'
   devise_for :users, controllers: {registrations: 'users/registrations'}
   resources :tweets do
     post :repost
