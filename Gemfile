@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'faker'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick'
 
 # Pagination gem
 gem 'kaminari'
