@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     tag = Tag.find_by(name: params[:name])
     @q = tag.tweets.order('created_at DESC').page(params[:page]).ransack(params[:q])
     @tweets = @q.result(distinct: true)
+    @tweet = Tweet.new
   end
 
 end
