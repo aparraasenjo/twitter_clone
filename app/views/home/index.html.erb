@@ -48,7 +48,7 @@
         <%= "¡sign up to follow!" %>
         <% end %>
         </td>
-        <td><%= tweet.likes.count %>
+        <td><%= tweet.likes.size %>
         <% if user_signed_in? %>
             <% liked = tweet.likes.find {|like| like.user_id == current_user.id} %>
             <% if liked %>

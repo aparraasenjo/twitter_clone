@@ -38,6 +38,8 @@ gem 'kaminari'
 # admin actions
 gem 'activeadmin'
 
+gem 'rack-cors'
+
 # for search forms
 gem 'ransack'
 
