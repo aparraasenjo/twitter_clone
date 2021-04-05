@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
   def index
     @q = Tweet.order('created_at DESC').page(params[:page]).ransack(params[:q])
     @tweets = @q.result(distinct: true)
+    # render json: @tweets.each {|tweet| tweet.id}
   end
 
   # GET /tweets/1 or /tweets/1.json

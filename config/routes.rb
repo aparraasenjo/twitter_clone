@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'api/news', to: 'api#index'
+  get 'api/:start_date/:end_date', to: 'api#show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'home#index'
@@ -12,3 +14,4 @@ Rails.application.routes.draw do
     resources :likes
   end
 end
+
