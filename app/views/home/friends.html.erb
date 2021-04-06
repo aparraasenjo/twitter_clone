@@ -27,15 +27,15 @@
         <td><%= render_with_hashtags(tweet.content) %></td>
         <td><%= tweet.user.name %> 
         <% if user_signed_in? %>
-        <% if current_user.friends.pluck(:friend_id).include?(tweet.user.id) %>
-        <%= button_to 'UnFollow', tweet_unfriend_path(tweet), method: :delete %></td>
-        <% elsif current_user.id == tweet.user.id %>
-        <%  %>
+            <% if current_user.friends.pluck(:friend_id).include?(tweet.user.id) %>
+            <%= button_to 'UnFollow', tweet_unfriend_path(tweet), method: :delete %></td>
+            <% elsif current_user.id == tweet.user.id %>
+            <%  %>
+            <% else %>
+            <%= button_to 'Follow', tweet_friend_path(tweet), method: :post %>
+            <% end %>
         <% else %>
-        <%= button_to 'Follow', tweet_friend_path(tweet), method: :post %>
-        <% end %>
-        <% else %>
-        <%= "¡sign up to follow!" %>
+            <%= "¡sign up to follow!" %>
         <% end %>
         </td>
         <td><%= tweet.likes.count %>
@@ -49,9 +49,9 @@
         <% end %>
         <td><% if user_signed_in? %>
         <br>
-        <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %></td>
+            <%= button_to 'Retweet', tweet_repost_path(tweet), method: :post %></td>
         <% end %><td>
-        <td><%= link_to "#{time_ago_in_words(tweet.created_at)} ago", tweet_path(tweet) %>
+            <td><%= link_to "#{time_ago_in_words(tweet.created_at)} ago", tweet_path(tweet) %>
         </tr>
         <% end %>
     </tbody>
