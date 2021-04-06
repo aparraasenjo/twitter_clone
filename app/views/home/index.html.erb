@@ -25,24 +25,25 @@
     <%= paginate @tweets %>
     <thead>
         <tr>
-        <th class="text-center" scope="col">Content</th>
-        <th class="text-center" scope="col">Tweeted By</th>
-        <th class="text-center" scope="col">Likes</th>
-        <th class="text-center" scope="col">Retweet</th>
+            <th class="text-center" scope="col">Content</th>
+            <th class="text-center" scope="col">Tweeted By</th>
+            <th class="text-center" scope="col">Likes</th>
+            <th class="text-center" scope="col">Retweet</th>
         </tr>
     </thead>
     <tbody class="text-center">
         <tr>
         <% @tweets.each do |tweet| %>
         <td><%= render_with_hashtags(tweet.content) %></td>
-        <td><%= tweet.user.name %> 
+        <td><%= tweet.user.name %> <br>
+        <img src="<%= tweet.user.avatar%>" alt="user avatar"><br><br>
         <% if user_signed_in? %>
             <% if current_user.friends.pluck(:friend_id).include?(tweet.user.id) %>
-            <%= button_to 'UnFollow', tweet_unfriend_path(tweet), method: :delete %>
+                <%= button_to 'UnFollow', tweet_unfriend_path(tweet), method: :delete %>
             <% elsif current_user.id == tweet.user.id %>
-            <%  %>
+                <%  %>
             <% else %>
-            <%= button_to 'Follow', tweet_friend_path(tweet), method: :post %>
+                <%= button_to 'Follow', tweet_friend_path(tweet), method: :post %>
             <% end %>
         <% else %>
             <%= "¡sign up to follow!" %>
